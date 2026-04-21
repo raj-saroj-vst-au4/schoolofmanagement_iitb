@@ -1,0 +1,84 @@
+A 3D Website for SJMSOM — Ideas
+Below is a concrete, production-minded idea bank. I've split it into concept, signature sections, AI pipeline for your H200s, and tech stack. The goal: iPhone-grade cinematic polish + Jesko's luxury/craft feel, adapted for a B-school that lives inside an IIT.
+
+1. The Core Narrative (the "why" before the "wow")
+Pick one throughline so the 3D isn't decoration. For SJMSOM the strongest angle is:
+
+"Management, engineered at IIT Bombay."
+
+Every 3D sequence should reinforce that tension — engineering precision meeting business storytelling. This gives you permission to use technical-looking visuals (wireframes, data lattices, CAD-like reveals) that a typical B-school site can't pull off.
+
+2. Signature Sections (scroll-driven, Apple-style)
+Hero — "The Powai Campus, in 3D"
+Gaussian Splat of the actual campus (especially the lakeside + SJMSOM building). Capture with drone + phone footage, train a 3DGS scene. As the user scrolls, the camera flies from Powai Lake → into the school building → into a classroom.
+Fallback: a stylized low-poly campus with volumetric fog and god-rays.
+"The Program Stack" — Exploded 3D View
+Borrow Apple's internal-component reveal. Show SJMSOM's programs (MBA, EMBA, PhD, Executive Ed) as stacked 3D modules that explode apart on scroll, each becoming its own interactive panel. Hover a module → see curriculum as orbiting nodes.
+
+"Pedigree" — The Material Showcase
+Like Apple showing titanium: do a cinematic reveal of the IIT Bombay crest in brushed steel, rotating under studio lighting, while stats ("#4 NIRF Management", "60+ years", "X% placement") typeset in.
+
+"Where Our Alumni Are" — Living Globe
+A 3D globe (Three.js + shader-based city lights) with real alumni dots, animated arcs to companies (McKinsey, Google, Goldman, plus startups). Click a dot → modal with an AI-generated short (see §3).
+
+"A Day at SJMSOM" — Scroll Cinema
+A single long scroll sequence: 6am Powai sunrise → classroom case discussion → library → lake walk → night skyline. Shot like a film, assembled as a scrubbable video (Apple technique: per-frame JPEG sequence on a canvas, seeked by scroll position). This is where your H200s shine — generate B-roll.
+
+"The Classroom, Reimagined" — Interactive Case Study
+A mini 3D scene: a boardroom table with case documents floating. User picks a scenario (Marketing / Ops / Finance), the scene re-lights, numbers animate, a short AI-narrated insight plays. Shows the school is analytical, not brochure-ware.
+
+Faculty Wall — AI Portraits + Talking Heads
+Gaussian-splat or neural-rendered portraits of faculty, each with a 20-second AI-lip-synced clip ("What I teach, and why it matters"). Much cheaper/faster than scheduling 40 shoots.
+
+Configurator — "Design Your Two Years"
+Jesko-style configurator, but for a degree: pick specialization, electives, exchange program, club. A 3D "academic crest" rebuilds itself in real time. Ends with a downloadable personalized brochure PDF (generated server-side using your GPUs + a layout template).
+
+Placements Data Room
+Instead of a boring table: a 3D "salary skyline" — each bar a company building, height = CTC, lit by sector. Scrub a timeline slider to see the last 5 years morph.
+
+Footer — Dark, Cinematic, Audio-On Toggle
+Ambient campus audio (lake birds, distant lecture murmur). Optional; Apple does this sparingly.
+
+3. Where the 4×H200s Actually Help
+You don't need GPUs to run the site — you need them to generate the assets. Concrete pipelines:
+
+Asset	Open model	Use
+Campus B-roll (if drone footage is limited)	Wan 2.2 / HunyuanVideo / LTX-Video	"Day in the life" sequences, cinematic cutaways
+Faculty talking heads	LivePortrait / Hallo2 / Sonic	Lip-sync a single portrait to a script — generate the whole faculty wall in a day
+Hero cinematics	CogVideoX-5B / Wan 2.2	Abstract "engineered management" motifs (liquid metal forming a briefcase, etc.)
+Stills, textures, env maps	Flux.1-dev, SDXL, HiDream	Section backgrounds, HDRIs, brand imagery
+3D props (books, trophies, building blocks)	Hunyuan3D-2, TripoSR, Trellis	Generate the configurator's 3D pieces from text/image
+Upscale + clean	Topaz-alternatives: SUPIR, Real-ESRGAN	4K-ify anything
+Narration	F5-TTS, XTTS-v2	Multilingual voiceover (Hindi/English) for global reach
+Personalized brochure visuals	Flux + Jinja layout	Applicant types name → get a hero image with their name on a lanyard
+Practical note: bake everything to static assets (MP4, WebM, JPEG sequences, GLB, KTX2 textures). Don't run inference at request time — your H200s are an asset factory, the web server just serves CDN files. This keeps the site fast and cheap to host.
+
+4. Out-of-the-Box Features
+"Admit Mirror" — an applicant uploads a CV; a Qwen/Llama model running on the H200s returns a 3D "fit profile" (skills radar in WebGL) and suggests the right program. Gated behind an email capture = admissions gold.
+AI Campus Tour Guide — voice chat with a stylized 3D mascot (a splat-rendered stone lion from the IITB crest, say). Speech-in → LLM → TTS → lip-sync. Entirely on your servers.
+Research Universe — every faculty paper is a particle in a 3D embedding space (UMAP → Three.js points). Cluster by topic. Click a point, get the abstract + author. Recruiters and PhD aspirants love this.
+"Two Years in 90 Seconds" — a generative montage personalized to the visitor's interests (pulled from the Admit Mirror), composed live from pre-generated clips.
+Interactive Ranking Timeline — scroll horizontally through 60 years of SJMSOM history, with an evolving 3D campus model (1995 → 2026). Use old photos + Flux for missing eras.
+Night Mode as a real mode — not a CSS toggle; the whole 3D scene relights to "Powai at night" with Diwali lights on the Hostel 13/14 skyline. Easter egg during Oct–Nov.
+WebGPU Particle Crest — the SJMSOM logo assembles from 500k GPU particles on first load. One-time wow, then caches.
+"Ask an Alum" carousel — LivePortrait-synced short answers from real alumni to common prompts ("Was the rigor worth it?"). Feels human, scales infinitely.
+Scroll-scrubbed "case crack" — a P&L solves itself as you scroll, red numbers turning green. Shows the value of the degree literally.
+Live NSE/BSE ambient ticker rendered as a subtle 3D ribbon in the background of finance-related sections.
+5. Tech Stack I'd Actually Ship
+Framework: Next.js 15 (App Router) + TypeScript
+3D: React Three Fiber + drei + @react-three/postprocessing; Three.js WebGPURenderer where supported, WebGL2 fallback
+Splats: @mkkellogg/gaussian-splats-3d or luma-web
+Scroll: GSAP ScrollTrigger + Lenis for smooth scroll
+Motion/UI: Framer Motion, shadcn/ui, Tailwind
+Video: JPEG-sequence scroll scrub for hero (Apple's trick), MP4/WebM elsewhere with poster + lazy load
+Assets: glTF/GLB with Draco + Meshopt + KTX2 compression; everything on Cloudflare R2 + CDN
+Perf budget: LCP < 2.5s on 4G, hero under 3 MB initial, 3D bundle code-split and lazy-mounted after first paint
+Accessibility: every 3D section has a static fallback + prefers-reduced-motion kill switch. Non-negotiable for a .ac.in site.
+CMS: Sanity or Payload, so admissions can update content without touching code
+Analytics: Plausible + a scroll-depth heatmap (PostHog)
+6. Suggested Phasing
+Phase 0 (1 week): brand/art direction, shot list, capture campus drone + splat footage.
+Phase 1 (3–4 weeks): hero + program stack + alumni globe + placements. This alone beats 99% of B-school sites.
+Phase 2 (3 weeks): configurator, faculty wall, research universe. H200s running batch jobs overnight.
+Phase 3 (2 weeks): Admit Mirror, AI tour guide, personalization. Behind a feature flag.
+Phase 4: performance, accessibility, i18n (Hindi), launch.

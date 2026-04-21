@@ -1,0 +1,12 @@
+kind: flux_i2i
+input_image: SJMSOM_Expert_Session.webp
+subject: >
+  Executive MBA weekend session at SJMSOM. Mid-career professionals in business
+  attire around a boardroom table, engaged in case discussion. Warm indoor
+  lighting, large windows showing evening Powai skyline behind. Senior-feel,
+  aspirational, polished. Diverse Indian professionals, 30s-40s age range.
+width: 1440
+height: 1080
+denoise: 0.6
+steps: 40
+extra: "executive weekend-class aesthetic, aspirational brochure photography"

@@ -1,0 +1,12 @@
+kind: flux_i2i
+input_image: Campus_lake.webp
+subject: >
+  Pre-dawn mist over Powai Lake with the modernist SJMSOM building reflected on the
+  water. Subtle volumetric fog, teal-warm duotone grade, cinematic wide format.
+  The frame feels spacious, quiet, editorial — like the opening plate of a brand film.
+  Lush campus flora at frame edges, distant city skyline softly visible.
+width: 2048
+height: 1152
+denoise: 0.62
+steps: 45
+extra: "vast empty sky in upper third for headline overlay, ARRI Alexa 65 look"

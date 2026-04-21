@@ -1,0 +1,13 @@
+kind: flux_i2i
+input_image: Campus_IIT_Bombay.jpg
+subject: >
+  Wide full-bleed night hero plate of IIT Bombay's Powai campus — central
+  SJMSOM building distant right, lake in foreground reflecting city lights,
+  Mumbai skyline faintly visible beyond the trees. Deep navy sky with warm
+  amber window glows. Long exposure, symmetrical composition, lots of
+  negative sky for large headline overlay. Cinematic architectural grandeur.
+width: 2560
+height: 1440
+denoise: 0.58
+steps: 45
+extra: "wide aspect for full-bleed footer, low brightness, muted teal-amber palette"

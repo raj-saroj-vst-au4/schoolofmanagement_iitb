@@ -1,0 +1,12 @@
+kind: flux_i2i
+input_image: Campus_lake.webp
+subject: >
+  17:45 golden-hour walk along Powai Lake promenade, IIT Bombay campus. Two MBA
+  students in business-casual attire walking away from camera, deep in conversation,
+  one holding a coffee cup. Warm low-angle sun rim-lighting their hair and
+  shoulders. Lake reflects gold-pink sky; palm fronds backlit. Cinematic, candid.
+width: 1920
+height: 1080
+denoise: 0.6
+steps: 45
+extra: "magic-hour glow, soft rim light, long shadows"

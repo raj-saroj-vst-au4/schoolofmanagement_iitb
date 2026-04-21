@@ -1,0 +1,14 @@
+kind: flux_i2i
+input_image: SJMSOM_Classroom.jpg
+subject: >
+  09:00 classroom case discussion at a top Indian business school. Tiered seating
+  filled with diverse MBA students — intent expressions, laptops open, one student
+  standing to argue a point, professor at the front gesturing at a case P&L slide
+  on a large screen. Warm overhead lighting, morning daylight through side windows.
+  Dynamic, candid editorial documentary frame. No visible faces sharply in focus —
+  light motion blur on gestures.
+width: 1920
+height: 1080
+denoise: 0.55
+steps: 45
+extra: "energetic atmosphere, amber and cool blue color contrast, shot from back of room"

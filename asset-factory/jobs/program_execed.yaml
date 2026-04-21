@@ -1,0 +1,12 @@
+kind: flux_i2i
+input_image: SJMSOM_Expert_Session2.jpg
+subject: >
+  Executive education short-course in session at SJMSOM. Industry leaders
+  in smart-casual attire in a modern tiered auditorium, a speaker at the
+  front presenting on a large screen. Engaged, professional audience,
+  taking notes. Lots of visible energy and respected-peer atmosphere.
+width: 1440
+height: 1080
+denoise: 0.6
+steps: 40
+extra: "industry-leader audience, modern auditorium, editorial documentary feel"

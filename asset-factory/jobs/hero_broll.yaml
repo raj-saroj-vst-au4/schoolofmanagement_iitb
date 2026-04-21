@@ -1,0 +1,12 @@
+kind: wan_i2v
+input_image: hero_still.png
+subject: >
+  Pre-dawn fog drifting slowly across Powai Lake, mirror reflections rippling faintly,
+  distant palm fronds swaying, first light creeping over the SJMSOM building.
+  Ambient cinematic atmosphere.
+motion: subtle_push_in
+width: 1280
+height: 720
+length: 81
+steps: 30
+extra: "cinematic 24fps feel, gentle and quiet motion only"

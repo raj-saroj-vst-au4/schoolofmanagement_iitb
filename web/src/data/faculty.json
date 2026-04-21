@@ -1,0 +1,218 @@
+[
+  {
+    "slug": "prof-svd-nageswara-rao",
+    "name": "Prof. S.V.D. Nageswara Rao",
+    "degree": "Fellow, IIM Ahmedabad",
+    "area": "Finance & Economics",
+    "tagline": "Head of school. Makes capital markets look suspiciously well-behaved.",
+    "img": "/media/faculty/prof-svd-nageswara-rao.jpg"
+  },
+  {
+    "slug": "prof-arti-d-kalro",
+    "name": "Prof. Arti D. Kalro",
+    "degree": "Ph.D., IIT Madras",
+    "area": "Marketing",
+    "tagline": "Can sell you your own opinion back — branded, rebranded.",
+    "img": "/media/faculty/prof-arti-d-kalro.jpg"
+  },
+  {
+    "slug": "prof-ashish-pandey",
+    "name": "Prof. Ashish Pandey",
+    "degree": "Fellow, MDI Gurgaon",
+    "area": "Organisation Behaviour & HR",
+    "tagline": "Treats quarterly reviews like mindfulness exercises.",
+    "img": "/media/faculty/prof-ashish-pandey.jpg"
+  },
+  {
+    "slug": "prof-ashish-singh",
+    "name": "Prof. Ashish Singh",
+    "degree": "Ph.D., IGIDR Mumbai",
+    "area": "Economics",
+    "tagline": "Proves fairness is just one Lorenz curve away.",
+    "img": "/media/faculty/prof-ashish-singh.jpg"
+  },
+  {
+    "slug": "prof-dinesh-sharma",
+    "name": "Prof. Dinesh Sharma",
+    "degree": "Professor of Marketing",
+    "area": "Digital Marketing & Branding",
+    "tagline": "Believes 'going viral' is a KPI, not a diagnosis.",
+    "img": "/media/faculty/prof-dinesh-sharma.jpg"
+  },
+  {
+    "slug": "prof-gajendra-kumar-adil",
+    "name": "Prof. Gajendra Kumar Adil",
+    "degree": "Ph.D., University of Manitoba",
+    "area": "Operations Management",
+    "tagline": "Optimises queues — including the one for his office hours.",
+    "img": "/media/faculty/prof-gajendra-kumar-adil.jpg"
+  },
+  {
+    "slug": "prof-indrajit-mukherjee",
+    "name": "Prof. Indrajit Mukherjee",
+    "degree": "Ph.D., IIT Kharagpur",
+    "area": "Quality & Operations Research",
+    "tagline": "Six sigma of patience. One sigma of mercy for typos.",
+    "img": "/media/faculty/prof-indrajit-mukherjee.jpg"
+  },
+  {
+    "slug": "prof-kirankumar-momaya",
+    "name": "Prof. Kirankumar Momaya",
+    "degree": "Ph.D., University of Toronto",
+    "area": "Strategy & Competitiveness",
+    "tagline": "Competitiveness guru. Also very competitive about parking.",
+    "img": "/media/faculty/prof-kirankumar-momaya.jpg"
+  },
+  {
+    "slug": "prof-omkar-d-palsule-desai",
+    "name": "Prof. Omkar D. Palsule-Desai",
+    "degree": "Ph.D., IIM Ahmedabad",
+    "area": "Operations & Supply Chain",
+    "tagline": "Supply chain, solved. Your chai, still somehow cold.",
+    "img": "/media/faculty/prof-omkar-d-palsule-desai.jpg"
+  },
+  {
+    "slug": "prof-pankaj-dutta",
+    "name": "Prof. Pankaj Dutta",
+    "degree": "Ph.D., IIT Kharagpur",
+    "area": "Decision Sciences & OR",
+    "tagline": "Assumes the global optimum is one more cup of chai away.",
+    "img": "/media/faculty/prof-pankaj-dutta.jpg"
+  },
+  {
+    "slug": "prof-piyush-pandey",
+    "name": "Prof. Piyush Pandey",
+    "degree": "Ph.D., Delhi University",
+    "area": "Finance & Derivatives",
+    "tagline": "Reads Black-Scholes the way most people read the weather.",
+    "img": "/media/faculty/prof-piyush-pandey.jpg"
+  },
+  {
+    "slug": "prof-rahul-patil",
+    "name": "Prof. Rahul Patil",
+    "degree": "Ph.D., CU Boulder",
+    "area": "Operations Management",
+    "tagline": "If the numbers don't reconcile, he will — by noon.",
+    "img": "/media/faculty/prof-rahul-patil.jpg"
+  },
+  {
+    "slug": "prof-rajendra-sonar",
+    "name": "Prof. Rajendra Sonar",
+    "degree": "Ph.D., University of Pune",
+    "area": "Information Systems",
+    "tagline": "Debugged systems before most of us debugged ourselves.",
+    "img": "/media/faculty/prof-rajendra-sonar.jpg"
+  },
+  {
+    "slug": "prof-rohan-chinchwadkar",
+    "name": "Prof. Rohan Chinchwadkar",
+    "degree": "Ph.D., IIM Calcutta",
+    "area": "Finance & Entrepreneurship",
+    "tagline": "Knows exactly when your seed round is overvalued.",
+    "img": "/media/faculty/prof-rohan-chinchwadkar.jpg"
+  },
+  {
+    "slug": "prof-sarthak-gaurav",
+    "name": "Prof. Sarthak Gaurav",
+    "degree": "Ph.D., IGIDR",
+    "area": "Development Economics",
+    "tagline": "Behavioural economist. Will nudge you into attending class.",
+    "img": "/media/faculty/prof-sarthak-gaurav.jpg"
+  },
+  {
+    "slug": "prof-sawan-rathi",
+    "name": "Prof. Sawan Rathi",
+    "degree": "Ph.D., IIM Ahmedabad",
+    "area": "Innovation & Policy",
+    "tagline": "Tracks R&D spillovers like a detective tracks fingerprints.",
+    "img": "/media/faculty/prof-sawan-rathi.jpg"
+  },
+  {
+    "slug": "prof-s-narayan-rao",
+    "name": "Prof. S. Narayan Rao",
+    "degree": "Ph.D., IIT Madras",
+    "area": "Finance & Capital Markets",
+    "tagline": "Three bubbles witnessed. Zero portfolios popped.",
+    "img": "/media/faculty/prof-s-narayan-rao.jpg"
+  },
+  {
+    "slug": "prof-snehal-awate",
+    "name": "Prof. Snehal Awate",
+    "degree": "Ph.D., Temple University",
+    "area": "Strategy & International Business",
+    "tagline": "Maps knowledge flows. Her class has zero leakage.",
+    "img": "/media/faculty/prof-snehal-awate.jpg"
+  },
+  {
+    "slug": "prof-soumya-g-rajan",
+    "name": "Prof. Soumya G. Rajan",
+    "degree": "Ph.D., TISS Mumbai",
+    "area": "HR & Organisational Studies",
+    "tagline": "Believes in dignified workspaces. Your slouch is on notice.",
+    "img": "/media/faculty/prof-soumya-g-rajan.jpg"
+  },
+  {
+    "slug": "prof-srinwanti-h-chaudhury",
+    "name": "Prof. Srinwanti H. Chaudhury",
+    "degree": "Ph.D., UNSW Sydney",
+    "area": "Marketing",
+    "tagline": "Consumer psychology. Alarmingly accurate about your cart.",
+    "img": "/media/faculty/prof-srinwanti-h-chaudhury.jpg"
+  },
+  {
+    "slug": "prof-sudeep-r-bapat",
+    "name": "Prof. Sudeep R. Bapat",
+    "degree": "Ph.D., Statistics",
+    "area": "Decision Sciences & Statistics",
+    "tagline": "Runs hypothesis tests. Usually rejects your excuses too.",
+    "img": "/media/faculty/prof-sudeep-r-bapat.jpg"
+  },
+  {
+    "slug": "prof-ms-trupti-mishra",
+    "name": "Prof. Trupti Mishra",
+    "degree": "Ph.D., IIT Kharagpur",
+    "area": "Environmental Economics",
+    "tagline": "If climate change were a line item, she'd audit it.",
+    "img": "/media/faculty/prof-ms-trupti-mishra.jpg"
+  },
+  {
+    "slug": "prof-t-t-niranjan",
+    "name": "Prof. T. T. Niranjan",
+    "degree": "Fellow, MDI Gurgaon",
+    "area": "Operations Management",
+    "tagline": "Understands why you missed the deadline. Still deducts marks.",
+    "img": "/media/faculty/prof-t-t-niranjan.jpg"
+  },
+  {
+    "slug": "prof-ms-usha-ananthakumar",
+    "name": "Prof. Usha Ananthakumar",
+    "degree": "Ph.D., IIT Bombay",
+    "area": "Applied Statistics",
+    "tagline": "Your p-value hates her. She loves it back.",
+    "img": "/media/faculty/prof-ms-usha-ananthakumar.jpg"
+  },
+  {
+    "slug": "prof-varadraj-bapat",
+    "name": "Prof. Varadraj Bapat",
+    "degree": "Ph.D., IIT Bombay",
+    "area": "Finance & Accounting",
+    "tagline": "Triple-qualified CA. Your balance sheet is already sweating.",
+    "img": "/media/faculty/prof-varadraj-bapat.jpg"
+  },
+  {
+    "slug": "prof-ved-beloskar",
+    "name": "Prof. Ved Beloskar",
+    "degree": "Ph.D., IIT Bombay",
+    "area": "Accounting & Finance",
+    "tagline": "Knows GAAP better than most know their PIN.",
+    "img": "/media/faculty/prof-ved-beloskar.jpg"
+  },
+  {
+    "slug": "prof-vinish-kathuria",
+    "name": "Prof. Vinish Kathuria",
+    "degree": "Ph.D., IGIDR",
+    "area": "Industrial Economics",
+    "tagline": "Treats market failure like a whodunit — solved by chapter 3.",
+    "img": "/media/faculty/prof-vinish-kathuria.jpg"
+  }
+]

@@ -1,0 +1,12 @@
+kind: flux_i2i
+input_image: Campus_Library.webp
+subject: >
+  PhD researcher at work — a young Indian scholar at a wooden desk, laptop
+  open next to a stack of academic papers and a coffee mug. Whiteboard
+  behind filled with equations and diagrams. Late-afternoon side light
+  through tall library windows. Contemplative, scholarly, deep focus.
+width: 1440
+height: 1080
+denoise: 0.6
+steps: 40
+extra: "academic research atmosphere, equations on whiteboard, warm golden side light"

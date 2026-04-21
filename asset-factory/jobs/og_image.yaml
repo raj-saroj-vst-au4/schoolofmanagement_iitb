@@ -1,0 +1,12 @@
+kind: flux_t2i
+subject: >
+  Hero brand image for SJMSOM (Shailesh J. Mehta School of Management, IIT Bombay).
+  Dramatic wide-angle exterior of a modern glass-and-concrete business school building
+  at blue-hour twilight, viewed across a still reflecting lake. Powai, Mumbai campus.
+  Warm interior lights glowing through tall windows, IITB architecture cues,
+  distant silhouette of lush tropical trees, steel-and-glass entrance. Low-contrast
+  moody sky with lingering orange horizon. Long exposure, ultra-sharp, cinematic grade.
+width: 1200
+height: 630
+steps: 50
+extra: "4K billboard quality, negative space top-right for logo overlay"

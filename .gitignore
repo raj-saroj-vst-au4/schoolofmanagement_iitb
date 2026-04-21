@@ -1,0 +1,47 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Claude / agent workspace
+.claude/
+
+# Node
+node_modules/
+.pnp
+.pnp.*
+
+# Next.js build output
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# Env / secrets
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Test / coverage
+/coverage
+
+# Asset factory — generated outputs (regeneratable from GPU server)
+asset-factory/out/
+asset-factory/__pycache__/
+asset-factory/references/
+asset-factory/pipelines/
+asset-factory/*.tar.gz
+
+# Large media that bloats git history (regenerate or fetch separately)
+*.webm
+
+# OS temp
+/tmp/
