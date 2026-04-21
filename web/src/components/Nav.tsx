@@ -13,19 +13,34 @@ import {
   DrawerContent,
   DrawerOverlay,
   DrawerHeader,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
   useDisclosure,
   VStack,
 } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 
-const links = [
-  { label: "Programs", href: "#programs" },
-  { label: "Pedigree", href: "#pedigree" },
-  { label: "Alumni", href: "#alumni" },
-  { label: "Life", href: "#life" },
-  { label: "Faculty", href: "#faculty" },
-  { label: "Research", href: "#research" },
-  { label: "Placements", href: "#placements" },
+type SubLink = { label: string; href: string; sub?: string };
+type NavLink = { label: string; href?: string; children?: SubLink[] };
+
+const links: NavLink[] = [
+  { label: "Home", href: "/" },
+  { label: "About us", href: "/about" },
+  {
+    label: "Programs",
+    children: [
+      { label: "MBA",  href: "/programs/mba", sub: "2-year full-time · flagship" },
+      { label: "PhD",  href: "/programs/phd", sub: "Doctoral programme · 4–5 years" },
+      { label: "EMBA", href: "#",             sub: "Executive MBA · weekend" },
+      { label: "MDP",  href: "#",             sub: "Management Development · short-format" },
+    ],
+  },
+  { label: "Research",    href: "#" },
+  { label: "Placements",  href: "#" },
+  { label: "Faculties",   href: "/faculty/core" },
+  { label: "Contact us",  href: "/contact" },
 ];
 
 function MenuIcon({ open }: { open: boolean }) {
@@ -45,9 +60,17 @@ function MenuIcon({ open }: { open: boolean }) {
     </Box>
   );
 }
+function Caret() {
+  return (
+    <Box as="svg" w="10px" h="10px" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.6">
+      <polyline points="2.5,4.5 6,8 9.5,4.5" strokeLinecap="round" strokeLinejoin="round" />
+    </Box>
+  );
+}
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobilePrograms, setMobilePrograms] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   useEffect(() => {
@@ -73,45 +96,91 @@ export function Nav() {
       >
         <Container maxW="7xl" py={4}>
           <Flex align="center" justify="space-between">
-            <Box
-              as="a"
-              href="/"
-              display="inline-flex"
-              alignItems="center"
-              aria-label="SJMSOM, IIT Bombay"
-            >
+            <Box as="a" href="/" display="inline-flex" alignItems="center" aria-label="SJMSOM, IIT Bombay">
               <Box
                 as="img"
                 src="/sjmsom-logo.png"
                 alt="Shailesh J. Mehta School of Management, IIT Bombay"
                 h={{ base: "32px", md: "40px" }}
                 w="auto"
-                style={{
-                  filter: "brightness(0) invert(1)",
-                  transition: "opacity 200ms ease",
-                }}
+                style={{ filter: "brightness(0) invert(1)", transition: "opacity 200ms ease" }}
                 _hover={{ opacity: 0.85 } as never}
               />
             </Box>
 
+            {/* Desktop nav */}
             <HStack spacing={7} display={{ base: "none", lg: "flex" }}>
-              {links.map((l) => (
-                <Box
-                  key={l.href}
-                  as="a"
-                  href={l.href}
-                  fontSize="sm"
-                  color="brand.chalk"
-                  _hover={{ color: "white" }}
-                  transition="color 150ms"
-                >
-                  {l.label}
-                </Box>
-              ))}
+              {links.map((l) =>
+                l.children ? (
+                  <Menu key={l.label} placement="bottom-start" offset={[0, 14]} gutter={0} isLazy>
+                    <MenuButton
+                      as="button"
+                      fontSize="sm"
+                      color="brand.chalk"
+                      _hover={{ color: "white" }}
+                      transition="color 150ms"
+                    >
+                      <HStack spacing={1.5}>
+                        <Text>{l.label}</Text>
+                        <Caret />
+                      </HStack>
+                    </MenuButton>
+                    <MenuList
+                      bg="rgba(10,13,18,0.96)"
+                      backdropFilter="saturate(140%) blur(20px)"
+                      border="1px solid rgba(255,255,255,0.08)"
+                      borderRadius="xl"
+                      py={2}
+                      minW="280px"
+                      boxShadow="0 20px 60px rgba(0,0,0,0.5)"
+                    >
+                      {l.children.map((c) => (
+                        <MenuItem
+                          key={c.href}
+                          as="a"
+                          href={c.href}
+                          bg="transparent"
+                          color="brand.chalk"
+                          _hover={{ bg: "rgba(255,255,255,0.05)", color: "white" }}
+                          _focus={{ bg: "rgba(255,255,255,0.05)", color: "white" }}
+                          py={3}
+                          px={4}
+                          borderRadius="md"
+                        >
+                          <VStack align="flex-start" spacing={0.5} w="full">
+                            <Text fontSize="sm" fontWeight={600}>
+                              {c.label}
+                            </Text>
+                            {c.sub && (
+                              <Text fontSize="xs" color="brand.mist">
+                                {c.sub}
+                              </Text>
+                            )}
+                          </VStack>
+                        </MenuItem>
+                      ))}
+                    </MenuList>
+                  </Menu>
+                ) : (
+                  <Box
+                    key={l.href}
+                    as="a"
+                    href={l.href}
+                    fontSize="sm"
+                    color="brand.chalk"
+                    _hover={{ color: "white" }}
+                    transition="color 150ms"
+                  >
+                    {l.label}
+                  </Box>
+                ),
+              )}
             </HStack>
 
             <HStack spacing={2}>
               <Button
+                as="a"
+                href="/programs/mba#admissions"
                 size="sm"
                 bg="white"
                 color="black"
@@ -135,7 +204,16 @@ export function Nav() {
         </Container>
       </Box>
 
-      <Drawer isOpen={isOpen} onClose={onClose} placement="right" size="xs">
+      {/* Mobile drawer */}
+      <Drawer
+        isOpen={isOpen}
+        onClose={() => {
+          setMobilePrograms(false);
+          onClose();
+        }}
+        placement="right"
+        size="xs"
+      >
         <DrawerOverlay bg="rgba(5,7,10,0.7)" backdropFilter="blur(6px)" />
         <DrawerContent bg="brand.obsidian" borderLeft="1px solid rgba(255,255,255,0.06)">
           <DrawerHeader borderBottom="1px solid rgba(255,255,255,0.06)">
@@ -154,29 +232,87 @@ export function Nav() {
                 variant="ghost"
                 color="white"
                 size="sm"
-                onClick={onClose}
+                onClick={() => {
+                  setMobilePrograms(false);
+                  onClose();
+                }}
               />
             </Flex>
           </DrawerHeader>
           <DrawerBody>
             <VStack align="stretch" spacing={1} py={4}>
-              {links.map((l) => (
-                <Box
-                  key={l.href}
-                  as="a"
-                  href={l.href}
-                  onClick={onClose}
-                  py={3}
-                  px={2}
-                  fontSize="lg"
-                  color="brand.chalk"
-                  borderBottom="1px solid rgba(255,255,255,0.04)"
-                  _hover={{ color: "white", bg: "rgba(255,255,255,0.03)" }}
-                >
-                  {l.label}
-                </Box>
-              ))}
+              {links.map((l) =>
+                l.children ? (
+                  <Box key={l.label}>
+                    <Box
+                      as="button"
+                      onClick={() => setMobilePrograms((v) => !v)}
+                      w="full"
+                      py={3}
+                      px={2}
+                      fontSize="lg"
+                      color="brand.chalk"
+                      borderBottom="1px solid rgba(255,255,255,0.04)"
+                      display="flex"
+                      justifyContent="space-between"
+                      alignItems="center"
+                      _hover={{ color: "white", bg: "rgba(255,255,255,0.03)" }}
+                    >
+                      <Text>{l.label}</Text>
+                      <Box
+                        transform={mobilePrograms ? "rotate(180deg)" : "rotate(0deg)"}
+                        style={{ transition: "transform 200ms ease" }}
+                      >
+                        <Caret />
+                      </Box>
+                    </Box>
+                    {mobilePrograms && (
+                      <VStack align="stretch" spacing={0} pl={4} py={1}>
+                        {l.children.map((c) => (
+                          <Box
+                            key={c.href}
+                            as="a"
+                            href={c.href}
+                            onClick={onClose}
+                            py={2.5}
+                            px={2}
+                            fontSize="md"
+                            color="brand.chalk"
+                            borderLeft="2px solid rgba(255,255,255,0.1)"
+                            _hover={{ color: "white", borderColor: "white" }}
+                          >
+                            {c.label}
+                            {c.sub && (
+                              <Text fontSize="xs" color="brand.mist" mt={0.5}>
+                                {c.sub}
+                              </Text>
+                            )}
+                          </Box>
+                        ))}
+                      </VStack>
+                    )}
+                  </Box>
+                ) : (
+                  <Box
+                    key={l.href}
+                    as="a"
+                    href={l.href}
+                    onClick={onClose}
+                    py={3}
+                    px={2}
+                    fontSize="lg"
+                    color="brand.chalk"
+                    borderBottom="1px solid rgba(255,255,255,0.04)"
+                    _hover={{ color: "white", bg: "rgba(255,255,255,0.03)" }}
+                  >
+                    {l.label}
+                  </Box>
+                ),
+              )}
+
               <Button
+                as="a"
+                href="/programs/mba#admissions"
                 mt={6}
                 size="lg"
                 bg="white"
