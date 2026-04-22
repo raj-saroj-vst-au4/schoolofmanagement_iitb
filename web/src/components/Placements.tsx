@@ -7,19 +7,20 @@ import { useRef } from "react";
 const MotionBox = motion.create(Box);
 
 const sectors = [
-  { name: "Consulting", pct: 32, color: "#1E5FFF" },
-  { name: "Finance", pct: 22, color: "#C9A96E" },
-  { name: "Product / Tech", pct: 24, color: "#7C5CFF" },
-  { name: "Operations", pct: 12, color: "#D63638" },
-  { name: "Gen Mgmt", pct: 10, color: "#2ECC71" },
+  { name: "Pharma & Others", pct: 23, color: "#C9A96E" },
+  { name: "Consulting", pct: 20, color: "#1E5FFF" },
+  { name: "BFSI & Conglomerates", pct: 20, color: "#7C5CFF" },
+  { name: "E-Comm & IT/ITeS", pct: 19, color: "#2ECC71" },
+  { name: "FMCG / FMCD", pct: 18, color: "#D63638" },
 ];
+const maxSectorPct = Math.max(...sectors.map((s) => s.pct));
 
 const recruiters = [
-  "McKinsey", "BCG", "Bain", "Kearney", "Accenture Strategy",
-  "Goldman Sachs", "JPMorgan", "Morgan Stanley", "Citi",
-  "Google", "Microsoft", "Amazon", "Flipkart", "Uber",
-  "Reliance", "Tata", "ITC", "Aditya Birla",
-  "PhonePe", "Razorpay", "Zerodha", "CRED",
+  "Accenture Strategy", "Alvarez & Marsal", "Kearney", "Deloitte USI", "EY", "PwC", "Capgemini", "Wipro",
+  "JPMorgan Chase", "ICICI Bank", "Axis Bank", "Nomura", "Yes Bank", "Aditya Birla Capital",
+  "Amazon", "Flipkart", "Zepto", "Mastercard", "Juspay", "Mastek",
+  "Asian Paints", "HUL", "P&G", "Mondelēz", "L'Oréal", "Marico", "Britannia", "Berger Paints",
+  "Reliance", "Godrej", "TAS", "ExxonMobil", "Mahindra & Mahindra", "Saint-Gobain", "Vedanta", "UPL",
 ];
 
 export function Placements() {
@@ -40,7 +41,7 @@ export function Placements() {
           <HStack spacing={3}>
             <Box w="24px" h="1px" bg="brand.iitRed" />
             <Text fontSize="xs" letterSpacing="0.3em" textTransform="uppercase" color="brand.mist">
-              Placements 2025
+              Placements 2024–26
             </Text>
           </HStack>
           <Heading fontSize={{ base: "4xl", md: "6xl" }} letterSpacing="-0.03em" lineHeight={1.05} maxW="4xl">
@@ -69,7 +70,7 @@ export function Placements() {
                       borderRadius="full"
                       bg={s.color}
                       initial={{ width: 0 }}
-                      animate={inView ? { width: `${s.pct * 2.5}%` } : {}}
+                      animate={inView ? { width: `${(s.pct / maxSectorPct) * 92}%` } : {}}
                       transition={{ duration: 1.2, delay: 0.1 + i * 0.1, ease: "easeOut" }}
                       boxShadow={`0 0 24px ${s.color}55`}
                     />
@@ -80,9 +81,9 @@ export function Placements() {
 
             <SimpleGrid columns={3} spacing={4} pt={6}>
               {[
-                { v: "₹68 LPA", l: "Highest" },
-                { v: "₹34.7 LPA", l: "Average" },
-                { v: "₹28 LPA", l: "Median" },
+                { v: "₹53.80L", l: "Highest" },
+                { v: "₹28.16L", l: "Average" },
+                { v: "₹26.00L", l: "Median" },
               ].map((k) => (
                 <VStack key={k.l} align="flex-start" spacing={1} p={4} bg="brand.graphite" borderRadius="lg">
                   <Text fontSize="xl" fontWeight={500} letterSpacing="-0.02em">{k.v}</Text>
@@ -97,7 +98,7 @@ export function Placements() {
           {/* Recruiters */}
           <VStack align="stretch" spacing={8}>
             <Text fontSize="sm" color="brand.mist" letterSpacing="0.2em" textTransform="uppercase">
-              450+ recruiters · a sample
+              51 recruiters · a sample
             </Text>
             <Box>
               <HStack flexWrap="wrap" spacing={3} rowGap={3}>

@@ -6,6 +6,7 @@ import { FooterCTA } from "@/components/FooterCTA";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { PinnedProfile } from "@/components/faculty/profile/PinnedProfile";
 import detailData from "@/data/faculty-detail.json";
+import { awardsByFaculty } from "@/lib/aggregate";
 
 type Section = { heading: string; items: string[]; paragraphs: string[] };
 type Profile = {
@@ -23,7 +24,15 @@ type Profile = {
   extraSections?: Section[];
 };
 
-const profiles = detailData as unknown as Profile[];
+// Awards live in the unified awards.json; inject them into each profile's sections.
+const profiles: Profile[] = (detailData as unknown as Profile[]).map((p) => {
+  const items = awardsByFaculty(p.slug).map((a) => a.writeup);
+  if (items.length === 0) return p;
+  return {
+    ...p,
+    sections: { ...p.sections, awards: { heading: "Awards", items, paragraphs: [] } },
+  };
+});
 
 export function generateStaticParams() {
   return profiles.map((p) => ({ slug: p.slug }));

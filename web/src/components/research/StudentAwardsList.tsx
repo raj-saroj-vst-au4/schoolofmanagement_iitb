@@ -25,39 +25,54 @@ function SearchIcon() {
   );
 }
 
-const PAGE = 20;
+const PAGE = 12;
 
-export function AwardsList({ entries }: { entries: Award[] }) {
+export function StudentAwardsList({ entries }: { entries: Award[] }) {
   const [q, setQ] = useState("");
-  const [facultySlug, setFacultySlug] = useState("all");
+  const [batch, setBatch] = useState("all");
   const [shown, setShown] = useState(PAGE);
 
-  const faculty = useMemo(() => {
-    const m = new Map<string, { name: string; count: number }>();
+  const batches = useMemo(() => {
+    const m = new Map<string, number>();
     for (const e of entries) {
-      if (!e.facultySlug) continue;
-      const cur = m.get(e.facultySlug);
-      if (cur) cur.count++;
-      else m.set(e.facultySlug, { name: e.facultyName ?? e.recipient, count: 1 });
+      const key = e.batch ?? "Unspecified";
+      m.set(key, (m.get(key) ?? 0) + 1);
     }
     return [...m.entries()]
-      .map(([slug, v]) => ({ slug, ...v }))
+      .map(([key, count]) => ({ key, count }))
       .sort((a, b) => b.count - a.count);
   }, [entries]);
 
   const filtered = useMemo(() => {
     const ql = q.trim().toLowerCase();
     return entries.filter((e) => {
-      if (facultySlug !== "all" && e.facultySlug !== facultySlug) return false;
+      if (batch !== "all" && (e.batch ?? "Unspecified") !== batch) return false;
       if (ql) {
-        const hay = [e.title, e.writeup, e.facultyName ?? ""].join(" ").toLowerCase();
+        const hay = [e.title, e.event ?? "", e.recipient, e.team ?? "", e.writeup]
+          .join(" ")
+          .toLowerCase();
         if (!hay.includes(ql)) return false;
       }
       return true;
     });
-  }, [entries, q, facultySlug]);
+  }, [entries, q, batch]);
 
   const visible = filtered.slice(0, shown);
+
+  if (!entries.length) {
+    return (
+      <Box as="section" py={{ base: 10, md: 16 }} bg="brand.ink">
+        <Container maxW="6xl">
+          <VStack py={20} color="brand.mist" spacing={3}>
+            <Text fontSize="xl">No student awards yet.</Text>
+            <Text fontSize="sm" maxW="md" textAlign="center">
+              Achievements by our MBA and PhD students will appear here as they come in.
+            </Text>
+          </VStack>
+        </Container>
+      </Box>
+    );
+  }
 
   return (
     <Box as="section" py={{ base: 10, md: 16 }} bg="brand.ink">
@@ -70,7 +85,7 @@ export function AwardsList({ entries }: { entries: Award[] }) {
                 <SearchIcon />
               </InputLeftElement>
               <Input
-                placeholder="Search awards…"
+                placeholder="Search student awards…"
                 value={q}
                 onChange={(e) => { setQ(e.target.value); setShown(PAGE); }}
                 bg="rgba(255,255,255,0.04)"
@@ -84,53 +99,55 @@ export function AwardsList({ entries }: { entries: Award[] }) {
             </InputGroup>
           </HStack>
 
-          <Box>
-            <Text fontSize="xs" color="brand.mist" letterSpacing="0.16em" textTransform="uppercase" mb={3}>
-              Filter by faculty ({faculty.length})
-            </Text>
-            <HStack flexWrap="wrap" spacing={2} rowGap={2}>
-              <Box
-                as="button"
-                onClick={() => { setFacultySlug("all"); setShown(PAGE); }}
-                px={3}
-                py={1.5}
-                borderRadius="full"
-                border="1px solid"
-                borderColor={facultySlug === "all" ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.1)"}
-                bg={facultySlug === "all" ? "rgba(255,255,255,0.1)" : "transparent"}
-                color={facultySlug === "all" ? "white" : "brand.chalk"}
-                fontSize="xs"
-                _hover={{ borderColor: "rgba(255,255,255,0.3)" }}
-              >
-                All faculty
-              </Box>
-              {faculty.map((f) => (
+          {batches.length > 1 && (
+            <Box>
+              <Text fontSize="xs" color="brand.mist" letterSpacing="0.16em" textTransform="uppercase" mb={3}>
+                Filter by batch ({batches.length})
+              </Text>
+              <HStack flexWrap="wrap" spacing={2} rowGap={2}>
                 <Box
-                  key={f.slug}
                   as="button"
-                  onClick={() => { setFacultySlug(f.slug); setShown(PAGE); }}
+                  onClick={() => { setBatch("all"); setShown(PAGE); }}
                   px={3}
                   py={1.5}
                   borderRadius="full"
                   border="1px solid"
-                  borderColor={facultySlug === f.slug ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.1)"}
-                  bg={facultySlug === f.slug ? "rgba(255,255,255,0.1)" : "transparent"}
-                  color={facultySlug === f.slug ? "white" : "brand.chalk"}
+                  borderColor={batch === "all" ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.1)"}
+                  bg={batch === "all" ? "rgba(255,255,255,0.1)" : "transparent"}
+                  color={batch === "all" ? "white" : "brand.chalk"}
                   fontSize="xs"
                   _hover={{ borderColor: "rgba(255,255,255,0.3)" }}
                 >
-                  {f.name.replace(/^Prof\.\s*/, "")} <Box as="span" color="brand.mist" ml={1}>({f.count})</Box>
+                  All batches
                 </Box>
-              ))}
-            </HStack>
-          </Box>
+                {batches.map((b) => (
+                  <Box
+                    key={b.key}
+                    as="button"
+                    onClick={() => { setBatch(b.key); setShown(PAGE); }}
+                    px={3}
+                    py={1.5}
+                    borderRadius="full"
+                    border="1px solid"
+                    borderColor={batch === b.key ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.1)"}
+                    bg={batch === b.key ? "rgba(255,255,255,0.1)" : "transparent"}
+                    color={batch === b.key ? "white" : "brand.chalk"}
+                    fontSize="xs"
+                    _hover={{ borderColor: "rgba(255,255,255,0.3)" }}
+                  >
+                    {b.key} <Box as="span" color="brand.mist" ml={1}>({b.count})</Box>
+                  </Box>
+                ))}
+              </HStack>
+            </Box>
+          )}
 
           <HStack justify="space-between" color="brand.mist" fontSize="xs" letterSpacing="0.12em" textTransform="uppercase">
             <Text>Showing {Math.min(shown, filtered.length)} of {filtered.length}</Text>
-            {(q || facultySlug !== "all") && (
+            {(q || batch !== "all") && (
               <Box
                 as="button"
-                onClick={() => { setQ(""); setFacultySlug("all"); setShown(PAGE); }}
+                onClick={() => { setQ(""); setBatch("all"); setShown(PAGE); }}
                 color="brand.chalk"
                 _hover={{ color: "white" }}
               >
@@ -142,7 +159,7 @@ export function AwardsList({ entries }: { entries: Award[] }) {
 
         {filtered.length === 0 ? (
           <VStack py={20} color="brand.mist">
-            <Text fontSize="xl">No awards match.</Text>
+            <Text fontSize="xl">No student awards match.</Text>
           </VStack>
         ) : (
           <>

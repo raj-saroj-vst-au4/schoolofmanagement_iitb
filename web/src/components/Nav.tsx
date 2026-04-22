@@ -43,9 +43,9 @@ const links: NavLink[] = [
       { label: "Research",     href: "/research",     sub: "Interests, topics, projects" },
       { label: "Publications", href: "/publications", sub: "Papers across all faculty" },
       { label: "Awards",       href: "/awards",       sub: "Honours, grants, recognitions" },
+      { label: "Placements",   href: "/placements",   sub: "MBA final placement report 2024–26" },
     ],
   },
-  { label: "Placements",  href: "#" },
   {
     label: "People",
     children: [

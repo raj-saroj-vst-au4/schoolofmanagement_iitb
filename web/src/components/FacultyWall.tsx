@@ -187,9 +187,7 @@ export function FacultyWall() {
         <HStack justify="center">
           <Box
             as="a"
-            href="https://www.som.iitb.ac.in/core-faculty/"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/faculty/core"
             fontSize="sm"
             color="brand.chalk"
             borderBottom="1px solid"

@@ -1,4 +1,51 @@
 import detailData from "@/data/faculty-detail.json";
+import awardsData from "@/data/awards.json";
+
+// ---------- Awards (unified) ----------
+
+export type AwardLink = { label: string; url: string };
+
+export type Award = {
+  id: string;
+  kind: "faculty" | "student";
+  title: string;
+  writeup: string;
+  year: number | null;
+  date?: string;
+  images: string[];
+  links: AwardLink[];
+  // student fields
+  event?: string;
+  recipient: string;
+  batch?: string;
+  team?: string;
+  // faculty fields
+  facultySlug?: string;
+  facultyName?: string;
+  facultyArea?: string;
+  facultyImg?: string;
+};
+
+export const awards: Award[] = awardsData as Award[];
+
+/** Most-recent-first sort, using `date` when available and falling back to `year`. */
+function awardRank(a: Award): number {
+  if (a.date) return new Date(a.date).getTime();
+  if (a.year != null) return new Date(a.year, 11, 31).getTime();
+  return -Infinity;
+}
+
+export const awardsSorted: Award[] = [...awards].sort((a, b) => awardRank(b) - awardRank(a));
+
+export const facultyAwards: Award[] = awardsSorted.filter((a) => a.kind === "faculty");
+export const studentAwards: Award[] = awardsSorted.filter((a) => a.kind === "student");
+
+/** Awards by a given faculty slug, most-recent first. */
+export function awardsByFaculty(slug: string): Award[] {
+  return facultyAwards.filter((a) => a.facultySlug === slug);
+}
+
+// ---------- Faculty profiles ----------
 
 export type AggSection = { heading: string; items: string[]; paragraphs: string[] };
 export type AggProfile = {
@@ -13,9 +60,21 @@ export type AggProfile = {
   sections: Record<string, AggSection>;
 };
 
-export const profiles = detailData as unknown as AggProfile[];
+const awardItemsBySlug = facultyAwards.reduce<Record<string, string[]>>((acc, a) => {
+  if (!a.facultySlug) return acc;
+  (acc[a.facultySlug] ||= []).push(a.writeup);
+  return acc;
+}, {});
 
-/** Flattened entry from one faculty's section list. */
+/** Profiles enriched with `sections.awards` synthesised from the unified awards feed. */
+export const profiles: AggProfile[] = (detailData as unknown as AggProfile[]).map((p) => {
+  const items = awardItemsBySlug[p.slug];
+  if (!items || items.length === 0) return p;
+  const awardsSection: AggSection = { heading: "Awards", items, paragraphs: [] };
+  return { ...p, sections: { ...p.sections, awards: awardsSection } };
+});
+
+/** Flattened entry from one faculty's section list. Preserved for non-award sections. */
 export type Entry = {
   text: string;
   facultySlug: string;
