@@ -3,9 +3,9 @@
 import { Box, Container, Heading, Text, VStack, HStack, SimpleGrid } from "@chakra-ui/react";
 
 const stats = [
-  { value: "2", unit: "years", label: "Full-time program" },
+  { value: "2", unit: "years", label: "Full-time · 8 terms" },
   { value: "137", unit: "credits", label: "Comprehensive curriculum" },
-  { value: "100", unit: "%", label: "Placement record" },
+  { value: "1:9.6", unit: "", label: "Faculty–student ratio" },
 ];
 
 export function MBAHero() {

@@ -8,13 +8,16 @@ import { Overview } from "@/components/mba/Overview";
 import { Structure } from "@/components/mba/Structure";
 import { Curriculum } from "@/components/mba/Curriculum";
 import { Admissions } from "@/components/mba/Admissions";
-import { Fees } from "@/components/mba/Fees";
+import { ApplicationProcess } from "@/components/mba/ApplicationProcess";
+import { International } from "@/components/mba/International";
+import { Rankings } from "@/components/mba/Rankings";
+import { Resources } from "@/components/mba/Resources";
 import { MBAFaq } from "@/components/mba/FAQ";
 
 export const metadata: Metadata = {
   title: "MBA — SJMSOM, IIT Bombay",
   description:
-    "A full-time 2-year MBA with a technology-management focus, taught alongside the engineers and scientists of IIT Bombay. Admissions 2025–27 now open.",
+    "A full-time 2-year MBA with a technology-management focus, taught alongside the engineers and scientists of IIT Bombay. Admissions 2026–28.",
 };
 
 export default function MBAPage() {
@@ -24,10 +27,13 @@ export default function MBAPage() {
       <Nav />
       <MBAHero />
       <Overview />
+      <Rankings />
       <Structure />
       <Curriculum />
       <Admissions />
-      <Fees />
+      <ApplicationProcess />
+      <International />
+      <Resources />
       <MBAFaq />
       <FooterCTA />
     </Box>

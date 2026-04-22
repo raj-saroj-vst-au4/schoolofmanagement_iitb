@@ -115,10 +115,18 @@ function IconBtn({
       transform: "translateY(-1px)",
     } as never,
   };
+  const isExternal = !!href && /^https?:\/\//.test(href);
   return (
     <Tooltip label={label} placement="top" hasArrow bg="brand.obsidian" color="white" fontSize="xs">
       {href ? (
-        <Box as="a" href={href} target="_blank" rel="noopener noreferrer" aria-label={label} {...Common}>
+        <Box
+          as="a"
+          href={href}
+          target={isExternal ? "_blank" : undefined}
+          rel={isExternal ? "noopener noreferrer" : undefined}
+          aria-label={label}
+          {...Common}
+        >
           {children}
         </Box>
       ) : (
@@ -132,6 +140,7 @@ function IconBtn({
 
 /* ---------- card ---------- */
 function FacultyCard({ f, onInfo }: { f: Faculty; onInfo: () => void }) {
+  const profileHref = `/faculty/${f.slug}`;
   return (
     <Box
       borderRadius="2xl"
@@ -142,60 +151,68 @@ function FacultyCard({ f, onInfo }: { f: Faculty; onInfo: () => void }) {
       style={{ transition: "transform 300ms ease, border-color 300ms ease" }}
       _hover={{ borderColor: "rgba(255,255,255,0.2)", transform: "translateY(-4px)" }}
     >
-      <Box position="relative" h={{ base: "280px", md: "320px" }} overflow="hidden" bg="brand.ink">
-        <Box
-          as="img"
-          src={f.img}
-          alt={f.name}
-          w="full"
-          h="full"
-          objectFit="cover"
-          loading="lazy"
-          draggable={false}
-          style={{
-            transition: "transform 500ms ease, filter 300ms ease",
-            filter: "grayscale(0.15) contrast(1.05)",
-          }}
-          _groupHover={{
-            transform: "scale(1.05)",
-            filter: "grayscale(0) contrast(1.05)",
-          } as never}
-        />
-        <Box
-          position="absolute"
-          inset={0}
-          bgGradient="linear(to-b, transparent 55%, rgba(18,22,29,0.98))"
-          pointerEvents="none"
-        />
+      {/* Photo + name block is a link to the full profile page */}
+      <Box as="a" href={profileHref} display="block">
+        <Box position="relative" h={{ base: "280px", md: "320px" }} overflow="hidden" bg="brand.ink">
+          <Box
+            as="img"
+            src={f.img}
+            alt={f.name}
+            w="full"
+            h="full"
+            objectFit="cover"
+            loading="lazy"
+            draggable={false}
+            style={{
+              transition: "transform 500ms ease, filter 300ms ease",
+              filter: "grayscale(0.15) contrast(1.05)",
+            }}
+            _groupHover={{
+              transform: "scale(1.05)",
+              filter: "grayscale(0) contrast(1.05)",
+            } as never}
+          />
+          <Box
+            position="absolute"
+            inset={0}
+            bgGradient="linear(to-b, transparent 55%, rgba(18,22,29,0.98))"
+            pointerEvents="none"
+          />
+        </Box>
+
+        <VStack align="flex-start" spacing={2} px={6} pt={6} pb={3}>
+          <Heading
+            fontSize={{ base: "md", md: "lg" }}
+            letterSpacing="-0.02em"
+            lineHeight={1.2}
+            noOfLines={2}
+            style={{ transition: "color 150ms" }}
+            _groupHover={{ color: "white" } as never}
+          >
+            {f.name}
+          </Heading>
+          <Text fontSize="2xs" color="brand.gold" letterSpacing="0.18em" textTransform="uppercase" fontWeight={600} noOfLines={1}>
+            {f.area}
+          </Text>
+          <Text fontSize="xs" color="brand.mist" fontFamily="mono" noOfLines={1}>
+            {f.degree}
+          </Text>
+        </VStack>
       </Box>
 
-      <VStack align="flex-start" spacing={2} p={6}>
-        <Heading fontSize={{ base: "md", md: "lg" }} letterSpacing="-0.02em" lineHeight={1.2} noOfLines={2}>
-          {f.name}
-        </Heading>
-        <Text fontSize="2xs" color="brand.gold" letterSpacing="0.18em" textTransform="uppercase" fontWeight={600} noOfLines={1}>
-          {f.area}
-        </Text>
-        <Text fontSize="xs" color="brand.mist" fontFamily="mono" noOfLines={1}>
-          {f.degree}
-        </Text>
-
-        <HStack spacing={2} pt={4}>
-          <IconBtn label="About" onClick={onInfo} accent="#1E5FFF">
-            <InfoIcon />
+      <HStack spacing={2} px={6} pb={6} pt={3}>
+        <IconBtn label="Quick info" onClick={onInfo} accent="#1E5FFF">
+          <InfoIcon />
+        </IconBtn>
+        <IconBtn label="Full profile" href={profileHref} accent="#C9A96E">
+          <HomeIcon />
+        </IconBtn>
+        {f.linkedin && (
+          <IconBtn label="LinkedIn" href={f.linkedin} accent="#0A66C2">
+            <LinkedInIcon />
           </IconBtn>
-          {f.homepage && (
-            <IconBtn label="Homepage" href={f.homepage} accent="#C9A96E">
-              <HomeIcon />
-            </IconBtn>
-          )}
-          {f.linkedin && (
-            <IconBtn label="LinkedIn" href={f.linkedin} accent="#0A66C2">
-              <LinkedInIcon />
-            </IconBtn>
-          )}
-        </HStack>
-      </VStack>
+        )}
+      </HStack>
     </Box>
   );
 }
@@ -241,6 +258,21 @@ function InfoModal({ f, isOpen, onClose }: { f: Faculty | null; isOpen: boolean;
               </Text>
 
               <HStack spacing={3} pt={8} flexWrap="wrap">
+                <Box
+                  as="a"
+                  href={`/faculty/${f.slug}`}
+                  px={5}
+                  py={2.5}
+                  borderRadius="full"
+                  bg="white"
+                  color="black"
+                  fontSize="sm"
+                  fontWeight={600}
+                  _hover={{ bg: "brand.chalk", transform: "translateY(-1px)" }}
+                  style={{ transition: "all 180ms ease" }}
+                >
+                  Full profile →
+                </Box>
                 {f.homepage && (
                   <Box
                     as="a"
@@ -250,14 +282,14 @@ function InfoModal({ f, isOpen, onClose }: { f: Faculty | null; isOpen: boolean;
                     px={5}
                     py={2.5}
                     borderRadius="full"
-                    bg="white"
-                    color="black"
+                    border="1px solid rgba(255,255,255,0.2)"
+                    color="white"
                     fontSize="sm"
-                    fontWeight={600}
-                    _hover={{ bg: "brand.chalk", transform: "translateY(-1px)" }}
+                    fontWeight={500}
+                    _hover={{ bg: "rgba(255,255,255,0.06)", borderColor: "rgba(255,255,255,0.4)" }}
                     style={{ transition: "all 180ms ease" }}
                   >
-                    Visit homepage →
+                    SJMSOM homepage ↗
                   </Box>
                 )}
                 {f.linkedin && (
@@ -272,7 +304,7 @@ function InfoModal({ f, isOpen, onClose }: { f: Faculty | null; isOpen: boolean;
                     border="1px solid rgba(255,255,255,0.2)"
                     color="white"
                     fontSize="sm"
-                    fontWeight={600}
+                    fontWeight={500}
                     _hover={{ bg: "rgba(255,255,255,0.06)", borderColor: "rgba(255,255,255,0.4)" }}
                     style={{ transition: "all 180ms ease" }}
                   >

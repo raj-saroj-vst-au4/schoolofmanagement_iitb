@@ -5,22 +5,22 @@ import { Box, Container, Heading, Text, VStack, HStack, SimpleGrid } from "@chak
 const features = [
   {
     title: "Technology management focus",
-    desc: "Specialised courses in Technology Policy, R&D Management, and Managing Technology Transfer.",
+    desc: "Core courses in Technology Policy, R&D Management, and Managing Technology Transfer — rare outside of IIT Bombay.",
     accent: "#1E5FFF",
   },
   {
-    title: "Leadership development",
-    desc: "Our signature 'Mission, Vision and Leadership' course, mentored by Indian business leaders.",
+    title: "Mission, Vision & Leadership",
+    desc: "A signature course where students work under the mentorship of Indian business leaders.",
     accent: "#C9A96E",
   },
   {
     title: "Industry projects",
-    desc: "Mandatory 2-month summer project and optional 1-month winter project in industry.",
+    desc: "Mandatory 2-month summer project, an optional 1-month winter project, and course-linked live industry projects.",
     accent: "#D63638",
   },
   {
-    title: "Interdisciplinary approach",
-    desc: "Access to every engineering and science department at IIT Bombay for collaborative learning.",
+    title: "Interdisciplinary access",
+    desc: "Open access to every engineering and science department at IIT Bombay, plus the SINE incubator home to 200+ startups.",
     accent: "#7C5CFF",
   },
 ];

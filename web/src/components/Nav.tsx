@@ -37,9 +37,24 @@ const links: NavLink[] = [
       { label: "MDP",  href: "#",             sub: "Management Development · short-format" },
     ],
   },
-  { label: "Research",    href: "#" },
+  {
+    label: "Impact",
+    children: [
+      { label: "Research",     href: "/research",     sub: "Interests, topics, projects" },
+      { label: "Publications", href: "/publications", sub: "Papers across all faculty" },
+      { label: "Awards",       href: "/awards",       sub: "Honours, grants, recognitions" },
+    ],
+  },
   { label: "Placements",  href: "#" },
-  { label: "Faculties",   href: "/faculty/core" },
+  {
+    label: "People",
+    children: [
+      { label: "Faculty",         href: "/faculty/core",              sub: "27 core professors" },
+      { label: "Staff",           href: "/people/staff",              sub: "Administration & office attendants" },
+      { label: "MBA students",    href: "/people/students/mba",       sub: "Current batches + alumni" },
+      { label: "PhD students",    href: "/people/students/phd",       sub: "Current & graduated scholars" },
+    ],
+  },
   { label: "Contact us",  href: "/contact" },
 ];
 
@@ -70,8 +85,12 @@ function Caret() {
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
-  const [mobilePrograms, setMobilePrograms] = useState(false);
+  const [mobileOpenMenus, setMobileOpenMenus] = useState<Record<string, boolean>>({});
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const toggleMobile = (key: string) =>
+    setMobileOpenMenus((v) => ({ ...v, [key]: !v[key] }));
+  const resetMobile = () => setMobileOpenMenus({});
 
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 20);
@@ -208,7 +227,7 @@ export function Nav() {
       <Drawer
         isOpen={isOpen}
         onClose={() => {
-          setMobilePrograms(false);
+          resetMobile();
           onClose();
         }}
         placement="right"
@@ -233,7 +252,7 @@ export function Nav() {
                 color="white"
                 size="sm"
                 onClick={() => {
-                  setMobilePrograms(false);
+                  resetMobile();
                   onClose();
                 }}
               />
@@ -246,7 +265,7 @@ export function Nav() {
                   <Box key={l.label}>
                     <Box
                       as="button"
-                      onClick={() => setMobilePrograms((v) => !v)}
+                      onClick={() => toggleMobile(l.label)}
                       w="full"
                       py={3}
                       px={2}
@@ -260,13 +279,13 @@ export function Nav() {
                     >
                       <Text>{l.label}</Text>
                       <Box
-                        transform={mobilePrograms ? "rotate(180deg)" : "rotate(0deg)"}
+                        transform={mobileOpenMenus[l.label] ? "rotate(180deg)" : "rotate(0deg)"}
                         style={{ transition: "transform 200ms ease" }}
                       >
                         <Caret />
                       </Box>
                     </Box>
-                    {mobilePrograms && (
+                    {mobileOpenMenus[l.label] && (
                       <VStack align="stretch" spacing={0} pl={4} py={1}>
                         {l.children.map((c) => (
                           <Box

@@ -5,14 +5,13 @@ import { FooterCTA } from "@/components/FooterCTA";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { ContactHero } from "@/components/contact/Hero";
 import { Directories } from "@/components/contact/Directories";
-import { Staff } from "@/components/contact/Staff";
 import { Reach } from "@/components/contact/Reach";
 import { Social } from "@/components/contact/Social";
 
 export const metadata: Metadata = {
   title: "Contact — SJMSOM, IIT Bombay",
   description:
-    "Contact the Shailesh J. Mehta School of Management at IIT Bombay. Office emails and phone numbers, administrative staff directory, directions to the Powai campus, and official social handles.",
+    "Contact the Shailesh J. Mehta School of Management at IIT Bombay. Office emails and phone numbers, directions to the Powai campus, and official social handles.",
 };
 
 export default function ContactPage() {
@@ -22,7 +21,6 @@ export default function ContactPage() {
       <Nav />
       <ContactHero />
       <Directories />
-      <Staff />
       <Reach />
       <Social />
       <FooterCTA />

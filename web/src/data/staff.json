@@ -1,44 +1,53 @@
-[
-  {
-    "slug": "narendra-rajput",
-    "name": "Narendra Rajput",
-    "designation": "Administrative Assistant",
-    "phone": "+91 22 2576 7782",
-    "email": "narendrar@som.iitb.ac.in"
-  },
-  {
-    "slug": "nandini-vartak",
-    "name": "Nandini Vartak",
-    "designation": "Administrative Assistant",
-    "phone": "+91 22 2576 7781",
-    "email": "nandinig@som.iitb.ac.in"
-  },
-  {
-    "slug": "rahul-kumar-gupta",
-    "name": "Rahul Kumar Gupta",
-    "designation": "Jr. Administrative Assistant",
-    "phone": "+91 22 2576 8781",
-    "email": "rahul8@som.iitb.ac.in"
-  },
-  {
-    "slug": "pratyaksha-trivedi",
-    "name": "Pratyaksha Trivedi",
-    "designation": "Jr. Administrative Assistant",
-    "phone": "+91 22 2576 7781",
-    "email": "pratyaksha@som.iitb.ac.in"
-  },
-  {
-    "slug": "apurv-pawaskar",
-    "name": "Apurv Pawaskar",
-    "designation": "Jr. Administrative Assistant",
-    "phone": "+91 22 2576 8770",
-    "email": "apurv.p@som.iitb.ac.in"
-  },
-  {
-    "slug": "anita-narwade",
-    "name": "Anita Narwade",
-    "designation": "Technical Assistant (Library)",
-    "phone": "+91 22 2576 4782",
-    "email": "library@som.iitb.ac.in"
-  }
-]
+{
+  "administration": [
+    {
+      "slug": "narendra-rajput",
+      "name": "Narendra Rajput",
+      "designation": "Administrative Assistant",
+      "phone": "+91 22 2576 7782",
+      "email": "narendrar@som.iitb.ac.in"
+    },
+    {
+      "slug": "nandini-vartak",
+      "name": "Nandini Vartak",
+      "designation": "Administrative Assistant",
+      "phone": "+91 22 2576 7781",
+      "email": "nandinig@som.iitb.ac.in"
+    },
+    {
+      "slug": "rahul-kumar-gupta",
+      "name": "Rahul Kumar Gupta",
+      "designation": "Jr. Administrative Assistant",
+      "phone": "+91 22 2576 8781",
+      "email": "rahul8@som.iitb.ac.in"
+    },
+    {
+      "slug": "pratyaksha-trivedi",
+      "name": "Pratyaksha Trivedi",
+      "designation": "Jr. Administrative Assistant",
+      "phone": "+91 22 2576 7781",
+      "email": "pratyaksha@som.iitb.ac.in"
+    },
+    {
+      "slug": "apurv-pawaskar",
+      "name": "Apurv Pawaskar",
+      "designation": "Jr. Administrative Assistant",
+      "phone": "+91 22 2576 8770",
+      "email": "apurv.p@som.iitb.ac.in"
+    },
+    {
+      "slug": "anita-narwade",
+      "name": "Anita Narwade",
+      "designation": "Technical Assistant (Library)",
+      "phone": "+91 22 2576 4782",
+      "email": "library@som.iitb.ac.in"
+    }
+  ],
+  "officeBoys": [
+    { "slug": "office-attendant-1", "name": "Satyawan Mulam", "designation": "Office Attendant" },
+    { "slug": "office-attendant-2", "name": "Pradeep Kharat", "designation": "Office Attendant" },
+    { "slug": "office-attendant-3", "name": "Dnyaneshwar Malode", "designation": "Office Attendant" },
+    { "slug": "office-attendant-4", "name": "Snehal Gawli", "designation": "Office Attendant" },
+    { "slug": "office-attendant-5", "name": "Manisha Vardan", "designation": "Library Attendant" }
+  ]
+}
